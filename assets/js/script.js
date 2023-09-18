@@ -6,7 +6,7 @@ const propiedadesEnVenta =[{
     ubicacion: '123 Luxury Lane, Prestige Suburb, CA 45678',
     habitaciones: 4,
     banos: 4,
-    costo: 5.000,
+    costo: 5000,
     fumar: false,
     mascota: false
 },
@@ -17,7 +17,7 @@ const propiedadesEnVenta =[{
     ubicacion: '789 Mountain Road, Summit Peaks, CA 23456',
     habitaciones: 2,
     banos: 1,
-    costo: 1.200,
+    costo: 1200,
     fumar: true,
     mascota: true
 },
@@ -28,7 +28,7 @@ const propiedadesEnVenta =[{
     ubicacion: '567 Skyline Avenue, Skyview City, CA 56789',
     habitaciones: 3,
     banos: 3,
-    costo: 4.500,
+    costo: 4500,
     fumar: false,
     mascota: true  
 }
@@ -36,14 +36,14 @@ const propiedadesEnVenta =[{
 
 /*Propiedades  en alquiler*/ 
 
-const propieadesEnAlquiler = [{
+const propiedadesEnAlquiler = [{
     nombre : 'Apartamento en el centro de la ciudad',
     src : 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8YXBhcnRtZW50fGVufDB8MHwwfHx8MA%3D%3D&auto=format&fit=crop&w=700&q=60',
     descripcion : 'Este apartamento de 2 habitaciones está ubicado en el corazón de la ciudad, cerca de todo.',
     ubicacion: '123 Main Street, Anytown, CA 91234',
     habitaciones: 2,
     banos: 2,
-    costo: 2.000,
+    costo: 2000,
     fumar: false,
     mascota: true 
 },
@@ -65,8 +65,55 @@ const propieadesEnAlquiler = [{
     ubicacion: '123 Main Street, Anytown, CA 91234',
     habitaciones: 2,
     banos: 2,
-    costo: 2.200,
+    costo: 2200,
     fumar: false,
     mascota: false
 }
 ];
+var tarjetasVenta = '';
+var tarjetasAlquiler = '';
+/*  Creación de  tarjetas*/
+const crearPropiedad = (propiedad) => {
+    return `<div class="col-md-4 mb-4"><div class="card">
+      <img class="card-img-top"
+      src="${propiedad["src"]}"
+      alt="Imagen del departamento"
+      />
+      <div class="card-body">
+      <h5 class="card-title">${propiedad["nombre"]}</h5>
+      <p class="card-text">${propiedad["descripcion"]}</p>
+      <p>
+          <i class="fas fa-map-marker-alt"></i> ${propiedad["ubicacion"]}
+      </p>
+      <p>
+          <i class="fas fa-bed"></i> ${propiedad["habitaciones"]} Habitaciones |
+          <i class="fas fa-bath"></i> ${propiedad["banos"]} Baños
+      </p>
+      <p><i class="fas fa-dollar-sign"></i> ${propiedad["costo"]}</p>
+      ${propiedad['fumar'] ? '<p class="text-success"> <i class="fas fa-smoking"></i> Permitido fumar</p>' :
+                              '<p class="text-danger"> <i class="fas fa-smoking-ban"></i> No se permite fumar</p>' }
+      ${propiedad['mascota'] ? '<p class="text-success"> <i class="fas fa-paw"></i> Mascotas permitidas</p>' :
+                              '<p class="text-danger"> <i class="fa-solid fa-ban"></i> No se permiten mascotas</p>' }
+      </div>
+      </div>
+      </div>`;
+  }
+  
+
+if (window.location.href.includes("index.html") || window.location.href.includes("propiedades_en_venta.html")) {
+    const seccionVenta = document.getElementById('comprar');
+    for (const propiedad of propiedadesEnVenta) {
+      const tarjetaVenta = crearPropiedad(propiedad);
+      seccionVenta.innerHTML += tarjetaVenta;
+    }
+  }
+  
+
+  const seccionAlquiler = document.getElementById('alquilar');
+  for (const propiedad of propiedadesEnAlquiler) {
+    const tarjetaAlquiler = crearPropiedad(propiedad);
+    seccionAlquiler.innerHTML += tarjetaAlquiler;
+  }
+  
+
+  
